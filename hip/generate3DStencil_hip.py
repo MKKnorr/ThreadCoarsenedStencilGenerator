@@ -12,7 +12,7 @@ def err(message):
     print(message, file=sys.stderr)
     sys.exit(1)
 
-usage = "generate3DStencil_cuda.py usage:\n"
+usage = "generate3DStencil_hip.py usage:\n"
 usage += "\tstencil neighbourhood\t\t'Box' or 'Star'\n"
 usage += "\taccess orientation\t'Row' or 'Column'\n"
 usage += "\tcoefficients\t'Jacobi' or 'Variable'\n"
@@ -239,6 +239,7 @@ content += "//The above copyright notice and this permission notice shall be inc
 content += "//\n"
 content += "//THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
 content += "\n"
+content += "#include <hip/hip_runtime.h>\n"
 content += "//Stencil: {0}, range: {1}, xCoarsening: {2}, yCoarsening: {3}, zCoarsening: {4}, orientation: {5}, alignment: {6}, cacheline size: {7}\n".format(neighbourhood, stencilRange, xCoarsening, yCoarsening, zCoarsening, orientation, alignment, CLsize)
 content += "#define range {0}\n".format(stencilRange)
 

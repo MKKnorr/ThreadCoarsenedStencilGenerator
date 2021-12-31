@@ -12,7 +12,7 @@ def err(message):
     print(message, file=sys.stderr)
     sys.exit(1)
 
-usage = "generate2DStencil_cuda.py usage:\n"
+usage = "generate2DStencil_hip.py usage:\n"
 usage += "\tstencil neighbourhood\t\t'Box' or 'Star'\n"
 usage += "\taccess orientation\t'Row' or 'Column'\n"
 usage += "\tcoefficients\t'Jacobi' or 'Variable'\n"
@@ -225,6 +225,7 @@ content += "#define range {0}\n".format(stencilRange)
 if(coefftype == "Variable"):
     content += "\n__constant__ double d_mask[{0}];\n\n".format(stencilSize)
 
+content += "#include <hip/hip_runtime.h>\n"
 content += printFunctionHeader()
 content += printFunctionInit()
 content += printCheck()
